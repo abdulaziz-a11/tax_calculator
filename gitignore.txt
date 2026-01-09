@@ -1,0 +1,19 @@
+from tax_calculator import calculate_tax, format_currency
+
+# Contoh penggunaan
+income = 300000000  # 300 juta rupiah
+tax = calculate_tax(income)
+print(f"Pendapatan: {format_currency(income)}")
+print(f"Pajak: {format_currency(tax)}")
+
+# Contoh dengan bracket kustom (misalnya, AS)
+us_brackets = [
+    (11000, 0.10),      # 0 - 11k: 10%
+    (44725, 0.12),      # 11k - 44k: 12%
+    (95375, 0.22),      # 44k - 95k: 22%
+    (float('inf'), 0.24) # > 95k: 24%
+]
+income_usd = 60000  # 60k USD
+tax_usd = calculate_tax(income_usd, us_brackets)
+print(f"Pendapatan (USD): {format_currency(income_usd, 'USD')}")
+print(f"Pajak (USD): {format_currency(tax_usd, 'USD')}")
